@@ -1,7 +1,16 @@
-/// {@template user_repository}
-/// A Very Good Project created by Very Good CLI.
-/// {@endtemplate}
+import 'dart:async';
+
+import 'package:user_repository/src/models/models.dart';
+import 'package:uuid/uuid.dart';
+
 class UserRepository {
-  /// {@macro user_repository}
-  const UserRepository();
+  User? _user;
+
+  Future<User?> getUser() async {
+    if (_user != null) return _user;
+    return Future.delayed(
+      const Duration(milliseconds: 300),
+      () => _user = User(const Uuid().v4()),
+    );
+  }
 }
